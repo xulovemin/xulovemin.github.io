@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>模糊金库 | 网络记事本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="网络记事本">
+  
+  <meta name="description" content="模糊金库上锁  密钥 K，计算 CRC 校验码，构成多项式 f(x) 多项式由密钥k、循环校验码组成 将集合 A 投影到 f(x) 上形成 (a, f(a)) 得到真实节点集合 A可以是指纹、静脉、虹膜等 随机添加大量噪声，合并真实节点与噪声集合，并乱序 1.噪声节点数量远远多于真实节点 2.噪声节点不能落在f(x)上 得到基于生物特征的模糊金库 V  解锁  采集用户特征形成集合 B B与A属于">
+<meta name="keywords" content="密码应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模糊金库">
+<meta property="og:url" content="https://xulovemin.github.io/2019/08/29/模糊金库/index.html">
+<meta property="og:site_name" content="网络记事本">
+<meta property="og:description" content="模糊金库上锁  密钥 K，计算 CRC 校验码，构成多项式 f(x) 多项式由密钥k、循环校验码组成 将集合 A 投影到 f(x) 上形成 (a, f(a)) 得到真实节点集合 A可以是指纹、静脉、虹膜等 随机添加大量噪声，合并真实节点与噪声集合，并乱序 1.噪声节点数量远远多于真实节点 2.噪声节点不能落在f(x)上 得到基于生物特征的模糊金库 V  解锁  采集用户特征形成集合 B B与A属于">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-30T05:48:41.090Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模糊金库">
+<meta name="twitter:description" content="模糊金库上锁  密钥 K，计算 CRC 校验码，构成多项式 f(x) 多项式由密钥k、循环校验码组成 将集合 A 投影到 f(x) 上形成 (a, f(a)) 得到真实节点集合 A可以是指纹、静脉、虹膜等 随机添加大量噪声，合并真实节点与噪声集合，并乱序 1.噪声节点数量远远多于真实节点 2.噪声节点不能落在f(x)上 得到基于生物特征的模糊金库 V  解锁  采集用户特征形成集合 B B与A属于">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">艾泽拉斯</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        艾泽拉斯
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        格罗姆·地狱咆哮
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-模糊金库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      模糊金库
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/算法/">算法</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-08-29
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="模糊金库"><a href="#模糊金库" class="headerlink" title="模糊金库"></a>模糊金库</h3><p><strong>上锁</strong></p>
+<ul>
+<li>密钥 <em>K</em>，计算 <em>CRC</em> 校验码，构成多项式 <em>f(x)</em> <code>多项式由密钥k、循环校验码组成</code></li>
+<li>将集合 <em>A</em> 投影到 <em>f(x)</em> 上形成 <em>(a, f(a))</em> 得到真实节点集合 <code>A可以是指纹、静脉、虹膜等</code></li>
+<li>随机添加大量噪声，合并真实节点与噪声集合，并乱序 <code>1.噪声节点数量远远多于真实节点 2.噪声节点不能落在f(x)上</code></li>
+<li>得到基于生物特征的模糊金库 <em>V</em></li>
+</ul>
+<p><strong>解锁</strong></p>
+<ul>
+<li>采集用户特征形成集合 <em>B</em> <code>B与A属于一类特征</code></li>
+<li>将 <em>B</em> 与模糊金库 <em>V</em> 对比</li>
+<li>假设阈值m，如果匹配大于等于m则进入候选集 <em>H</em>，否则失败</li>
+<li>从候选集 <em>H</em> 中取出m个点，利用拉格朗日插值法重构出多项式</li>
+<li>再利用 <em>CRC</em> 校验码校验多项式系数，验证是否正确</li>
+<li>如果 <em>CRC</em> 校验符合，则恢复密钥K成功</li>
+<li>否则，重新从候选集 <em>H</em> 中再取出m个点来重构多项式</li>
+<li>直到进行了最后操作仍未恢复密钥 <em>K</em>，失败</li>
+</ul>
+<h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><ul>
+<li>多生物特征的模糊金库算法</li>
+<li>细节点形变的模糊金库算法</li>
+</ul>
+<h3 id="一些提示资料"><a href="#一些提示资料" class="headerlink" title="一些提示资料"></a>一些提示资料</h3><ol>
+<li>生物特征识别技术主要包括指纹识别、指静脉识别、虹膜识别、掌纹识别、人脸识别、声音识别、DNA等识别等技术</li>
+<li>生物识别技术已经取代传统的密码或ID 卡，成为一项方便可靠的验证人身份的技术</li>
+<li>生物特征的身份认证需要存储注册用户的生物特征模板</li>
+<li>一个人的生物特征有限，如果被他人别有用心地窃取到，那么生物特征模板也就会被窃取到，这将会带来严重的后果</li>
+<li>加密过程是不可逆的，即原本的生物特征不能直接从加密模板中得到</li>
+<li>相比于指纹、手形、掌纹等手部特征，采用手指静脉特征进行加密具有独特的优越性</li>
+<li>处理指静脉的特征模板，将模板以点对的形式混杂在大量的干扰数据中。攻击者很难从混杂的大量数据中提取出真实的指静脉特征，这样便起到了加密的作用。只有拥有真实样本的解密者才能成功解密，得到密钥</li>
+<li>采用带有循环冗余检验码的指静脉密钥绑定算法。这种算法能够降低错误匹配指静脉的概率，同时能提高加密的准确性，降低加密信息被攻击者破解的概率。</li>
+<li>对适用于指静脉的模糊金库算法，采用细节点生成方法得到指静脉细节点，再添加大量的杂凑点对真实点进行隐藏，对真实点利用密钥绑定多项式，而对杂凑点则利用随机数计算。在恢复密钥时，通过比对查询指静脉中的细节点和模糊金库中的点的坐标信息，选择相匹配的细节点并进行相反计算，求得多项式并恢复出保护的密钥。</li>
+<li>模糊金库算法的目的在于利用一种具有模糊性的信息对某个密钥进行保护。随着生物特征识别的兴起，研究者们发现生物特征具有很好的模糊性，且利用生物特征生成模糊金库的算法具有良好的性能。由于指纹识别技术起步较早且发展较为成熟，针对基于生物特征的模糊金库研究大多基于指纹特征，随着研究的发展也相继出现了基于人脸、虹膜的模糊金库方案，而基于指静脉的模糊金库方案的研究则较为匮乏。其中已有的指纹模糊金库算法也存在一些缺陷，解锁时查询手指一旦发生改变，有可能无法正确解锁出所保存的密钥信息。为了解决这一问题，有研究者提出使用一小部分辅助数据来实现指纹对准技术，从而增强模糊金库的实用性，但辅助数据也将泄露一部分信息，因此不利于模糊金库的安全性。本章节遵循这一思路，提出一种较安全且便捷的基于手指静脉的模糊金库算法。</li>
+<li>CRC 码（Cyclic Redundancy Check），全称叫做循环冗余检验码。其基本思路为：在发送端，根据长度为k位的二进制信息码，通过一定的规则来产生一个长度为r位的冗余监督码，该监督码的作用是在于校验信息，附在k位的信息序列后，形成一个新的n=k+r 位的二进制序列，也称为(n, k)码。在接收端，根据 CRC 码的规则进行校验，从而来确定在传输过程中数据是否发生错误。</li>
+</ol>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">训练数据规模</th>
+<th style="text-align:center">测试集规模</th>
+<th style="text-align:center">模型</th>
+<th style="text-align:center">训练时长</th>
+<th style="text-align:center">训练集准确率</th>
+<th style="text-align:center">测试集准确率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">4W</td>
+<td style="text-align:center">1W</td>
+<td style="text-align:center">CNN</td>
+<td style="text-align:center">15*20s</td>
+<td style="text-align:center">0.984</td>
+<td style="text-align:center">0.959</td>
+</tr>
+<tr>
+<td style="text-align:center">4W</td>
+<td style="text-align:center">1W</td>
+<td style="text-align:center">LSTM</td>
+<td style="text-align:center">51*20s</td>
+<td style="text-align:center">0.838</td>
+<td style="text-align:center">0.717</td>
+</tr>
+</tbody>
+</table>
+
+            <div class="post-copyright">
+    <!--<div class="content">
+        <p>最后更新： 2020年11月30日 13:48</p>
+        <p>原始链接： <a class="post-url" href="/2019/08/29/模糊金库/" title="模糊金库">https://xulovemin.github.io/2019/08/29/模糊金库/</a></p>
+        <footer>
+            <a href="https://xulovemin.github.io">
+                <img src="/images/logo.png" alt="格罗姆·地狱咆哮">
+                格罗姆·地狱咆哮
+            </a>
+        </footer>
+    </div>-->
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/密码应用/" class="color5">密码应用</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模糊金库"><span class="post-toc-text">模糊金库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#改进"><span class="post-toc-text">改进</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一些提示资料"><span class="post-toc-text">一些提示资料</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试"><span class="post-toc-text">测试</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/10/11/DockerSwarm/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          DockerSwarm
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/07/09/nginx部署与负载/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">nginx部署与负载</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        &copy; 格罗姆·地狱咆哮<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://xulovemin.github.io",
+      animate: true,
+      isHome: false,
+      share: false,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="关键字搜索..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

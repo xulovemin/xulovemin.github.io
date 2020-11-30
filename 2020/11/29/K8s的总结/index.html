@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>K8s的总结 | 网络记事本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="网络记事本">
+  
+  <meta name="description" content="k8s安装 设置yum源 12345678vi /etc/yum.repos.d/kubernetes.repo[kubernetes]name=Kubernetesbaseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64enabled=1gpgcheck=1repo_gpgcheck=1gpgkey">
+<meta name="keywords" content="K8s,Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="K8s的总结">
+<meta property="og:url" content="https://xulovemin.github.io/2020/11/29/K8s的总结/index.html">
+<meta property="og:site_name" content="网络记事本">
+<meta property="og:description" content="k8s安装 设置yum源 12345678vi /etc/yum.repos.d/kubernetes.repo[kubernetes]name=Kubernetesbaseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64enabled=1gpgcheck=1repo_gpgcheck=1gpgkey">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-30T05:48:41.085Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="K8s的总结">
+<meta name="twitter:description" content="k8s安装 设置yum源 12345678vi /etc/yum.repos.d/kubernetes.repo[kubernetes]name=Kubernetesbaseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64enabled=1gpgcheck=1repo_gpgcheck=1gpgkey">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">艾泽拉斯</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        艾泽拉斯
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        格罗姆·地狱咆哮
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-K8s的总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      K8s的总结
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/运维/">运维</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-11-29
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="k8s安装"><a href="#k8s安装" class="headerlink" title="k8s安装"></a>k8s安装</h3><ul>
+<li><p>设置yum源</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=<span class="number">1</span></span><br><span class="line">gpgcheck=<span class="number">1</span></span><br><span class="line">repo_gpgcheck=<span class="number">1</span></span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>临时关闭swap</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br><span class="line">swapon -a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装工具</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y kubelet kubeadm kubectl</span><br><span class="line">systemctl <span class="built_in">start</span> kubelet</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动k8s集群</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --image-repository registry.aliyuncs.com/google_containers --kubernetes-version v1.<span class="number">16</span>.<span class="number">0</span> （--ignore-preflight-errors=all一核报错）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改端口号</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/kubernetes/manifests/kube-apiserver.yaml</span><br><span class="line">设置insecure-port=<span class="number">8080</span></span><br><span class="line">重启 docker restart kube-apiserver_kube-apiserver这个容器</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装网络插件</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://docs.projectcalico.org/v3.<span class="number">14</span>/manifests/calico.yaml</span><br><span class="line">或者</span><br><span class="line">wget https://raw.githubusercontent.com/coreos/flannel/v0.<span class="number">12</span>.<span class="number">0</span>/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从节点部署</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">安装kubeadm、kubelet</span><br><span class="line">systemctl <span class="built_in">start</span> kubelet然后加入集群</span><br><span class="line">kubeadm token create --<span class="built_in">print</span>-join-command查看加入集群命令</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rancher导入k8s</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://<span class="number">10</span>.<span class="number">0</span>.<span class="number">1</span>.<span class="number">186</span>/v3/import/<span class="number">8</span>xhq4r95ptgghqbwx2sgf8t8vlvt5sg6wcqmvspwmn72dh4r7mp9lg.yaml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一些常用命令</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">kubectl get service</span><br><span class="line">kubectl get deploy</span><br><span class="line">kubectl get pods --all-namespaces</span><br><span class="line">kubectl get pods --all-namespaces -o wide</span><br><span class="line">kubectl get deployments --all-namespaces</span><br><span class="line">kubectl delete deployments kubernetes-dashboard -n kube-system</span><br><span class="line">kubectl describe pod -n kube-system </span><br><span class="line">kubectl describe pod name -o yaml</span><br><span class="line">允许master节点部署pod，使用命令如下:</span><br><span class="line">kubectl taint nodes --all node-role.kubernetes.io/master-</span><br><span class="line">禁止master部署pod</span><br><span class="line">kubectl taint nodes dvbd06 node-role.kubernetes.io/master=true:NoSchedule</span><br><span class="line">列出所有的kind</span><br><span class="line">kubectl api-resources -o wide --namespaced=true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>k8s彻底清除脚本</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f $(sudo docker ps -aq);</span><br><span class="line">docker volume rm $(sudo docker volume ls -q);</span><br><span class="line">rm -rf /etc/cni \</span><br><span class="line">       /etc/kubernetes \</span><br><span class="line">       /opt/cni \</span><br><span class="line">       /opt/rke \</span><br><span class="line">       /run/secrets/kubernetes.io \</span><br><span class="line">       /run/calico \</span><br><span class="line">       /run/flannel \</span><br><span class="line">       /var/lib/calico \</span><br><span class="line">       /var/lib/etcd \</span><br><span class="line">       /var/lib/cni \</span><br><span class="line">       /var/lib/kubelet \</span><br><span class="line">       /var/lib/rancher/rke/log \</span><br><span class="line">       /var/log/containers \</span><br><span class="line">       /var/log/pods \</span><br><span class="line">       /var/run/calico</span><br><span class="line"><span class="keyword">for</span> mount <span class="keyword">in</span> $(mount | grep tmpfs | grep '/var/lib/kubelet' | awk '&#123; <span class="built_in">print</span> $<span class="number">3</span> &#125;') /var/lib/kubelet /var/lib/rancher; <span class="keyword">do</span> umount $mount; done</span><br><span class="line">rm -f /var/lib/containerd/io.containerd.metadata.v1.bolt/meta.db</span><br><span class="line">sudo systemctl restart containerd</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <!--<div class="content">
+        <p>最后更新： 2020年11月30日 13:48</p>
+        <p>原始链接： <a class="post-url" href="/2020/11/29/K8s的总结/" title="K8s的总结">https://xulovemin.github.io/2020/11/29/K8s的总结/</a></p>
+        <footer>
+            <a href="https://xulovemin.github.io">
+                <img src="/images/logo.png" alt="格罗姆·地狱咆哮">
+                格罗姆·地狱咆哮
+            </a>
+        </footer>
+    </div>-->
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/K8s/" class="color4">K8s</a>
+      
+    <a href="/tags/Docker/" class="color2">Docker</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#k8s安装"><span class="post-toc-text">k8s安装</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2020/11/29/一些工具总结/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          一些工具总结
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2020/11/29/Jenkins使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Jenkins使用</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        &copy; 格罗姆·地狱咆哮<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://xulovemin.github.io",
+      animate: true,
+      isHome: false,
+      share: false,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="关键字搜索..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

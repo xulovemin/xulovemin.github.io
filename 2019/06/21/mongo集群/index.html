@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>mongo集群 | 网络记事本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="网络记事本">
+  
+  <meta name="description" content="一主两从 可进行读写分离 具备故障转移能力  1234567891011121314151617version: &apos;3&apos;services:  rs1:    image: mongo:3.4    ports:      - 27017:27017    command: mongod --dbpath /data/db --replSet myset  rs2:    image: mongo:">
+<meta name="keywords" content="集群,mongo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongo集群">
+<meta property="og:url" content="https://xulovemin.github.io/2019/06/21/mongo集群/index.html">
+<meta property="og:site_name" content="网络记事本">
+<meta property="og:description" content="一主两从 可进行读写分离 具备故障转移能力  1234567891011121314151617version: &apos;3&apos;services:  rs1:    image: mongo:3.4    ports:      - 27017:27017    command: mongod --dbpath /data/db --replSet myset  rs2:    image: mongo:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-30T05:48:41.088Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongo集群">
+<meta name="twitter:description" content="一主两从 可进行读写分离 具备故障转移能力  1234567891011121314151617version: &apos;3&apos;services:  rs1:    image: mongo:3.4    ports:      - 27017:27017    command: mongod --dbpath /data/db --replSet myset  rs2:    image: mongo:">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">艾泽拉斯</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        艾泽拉斯
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        格罗姆·地狱咆哮
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-mongo集群" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      mongo集群
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/技术贴/">技术贴</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-06-21
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一主两从"><a href="#一主两从" class="headerlink" title="一主两从"></a>一主两从</h3><ul>
+<li>可进行读写分离</li>
+<li>具备故障转移能力</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">version: '3'</span></span><br><span class="line"><span class="function"><span class="title">services</span>:</span></span><br><span class="line"><span class="function">  <span class="title">rs1</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27017:27017</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">myset</span></span></span><br><span class="line"><span class="function">  <span class="title">rs2</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27018:27017</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">myset</span></span></span><br><span class="line"><span class="function">  <span class="title">rs3</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27019:27017</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">myset</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="运行完docker-compose-up之后执行一下操作初始化"><a href="#运行完docker-compose-up之后执行一下操作初始化" class="headerlink" title="运行完docker-compose up之后执行一下操作初始化"></a>运行完docker-compose up之后执行一下操作初始化</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">docker-compose exec rs1 mongo</span><br><span class="line">config = &#123;</span><br><span class="line">      "_id" : "myset",</span><br><span class="line">      "members" : [</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">0</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27017</span>"</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">1</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27018</span>"</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">2</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27019</span>"</span><br><span class="line">          &#125;</span><br><span class="line">      ]</span><br><span class="line">&#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看配置与副本级状态</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rs.conf() </span><br><span class="line">rs.status()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>插入信息到主节点</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker-compose exec rs1 mongo</span><br><span class="line">use test</span><br><span class="line">db.test.insert(&#123;msg: 'this is from primary', ts: new <span class="built_in">Date</span>()&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在副本集中检测信息是否同步</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker-compose exec rs2 mongo</span><br><span class="line">rs.slaveOk()</span><br><span class="line">use test</span><br><span class="line">db.test.<span class="built_in">find</span>()</span><br><span class="line">docker-compose exec rs3 mongo</span><br><span class="line">rs.slaveOk()</span><br><span class="line">use test</span><br><span class="line">db.test.<span class="built_in">find</span>()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>故障测试</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker-compose stop rs1</span><br><span class="line">docker-compose exec rs2 mongo</span><br><span class="line">docker-compose exec rs3 mongo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用副本集群</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line">myclient = pymongo.MongoClient(<span class="string">"mongodb://172.16.11.130:27017,172.16.11.130:27018,172.16.11.130:27019"</span>)</span><br><span class="line">mydb = myclient[<span class="string">'test'</span>]</span><br><span class="line">mycol = mydb[<span class="string">'test'</span>]</span><br><span class="line">mycol.insert_one(&#123;<span class="string">'name'</span>: <span class="string">'李旭'</span>, <span class="string">'sex'</span>: <span class="string">'男'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+            <div class="post-copyright">
+    <!--<div class="content">
+        <p>最后更新： 2020年11月30日 13:48</p>
+        <p>原始链接： <a class="post-url" href="/2019/06/21/mongo集群/" title="mongo集群">https://xulovemin.github.io/2019/06/21/mongo集群/</a></p>
+        <footer>
+            <a href="https://xulovemin.github.io">
+                <img src="/images/logo.png" alt="格罗姆·地狱咆哮">
+                格罗姆·地狱咆哮
+            </a>
+        </footer>
+    </div>-->
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/集群/" class="color3">集群</a>
+      
+    <a href="/tags/mongo/" class="color1">mongo</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一主两从"><span class="post-toc-text">一主两从</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行完docker-compose-up之后执行一下操作初始化"><span class="post-toc-text">运行完docker-compose up之后执行一下操作初始化</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/06/27/docker哨兵/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          docker哨兵
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/06/12/Linux常用/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Linux常用</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        &copy; 格罗姆·地狱咆哮<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://xulovemin.github.io",
+      animate: true,
+      isHome: false,
+      share: false,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="关键字搜索..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

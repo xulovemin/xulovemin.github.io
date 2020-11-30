@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>mongo集群分片 | 网络记事本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="网络记事本">
+  
+  <meta name="description" content="介绍 主要分为三部分，配置服务副本集、分片副本集、连接 mongos 到分片集群，增加分片到集群  编写dockerFile –configsvr的作用是将端口改为27019 –shardsvr的作用是将端口改为27018  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748">
+<meta name="keywords" content="集群,mongo,分片">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongo集群分片">
+<meta property="og:url" content="https://xulovemin.github.io/2019/07/04/mongo集群分片/index.html">
+<meta property="og:site_name" content="网络记事本">
+<meta property="og:description" content="介绍 主要分为三部分，配置服务副本集、分片副本集、连接 mongos 到分片集群，增加分片到集群  编写dockerFile –configsvr的作用是将端口改为27019 –shardsvr的作用是将端口改为27018  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-30T05:48:41.088Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongo集群分片">
+<meta name="twitter:description" content="介绍 主要分为三部分，配置服务副本集、分片副本集、连接 mongos 到分片集群，增加分片到集群  编写dockerFile –configsvr的作用是将端口改为27019 –shardsvr的作用是将端口改为27018  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">艾泽拉斯</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        艾泽拉斯
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        格罗姆·地狱咆哮
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-mongo集群分片" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      mongo集群分片
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/技术贴/">技术贴</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-07-04
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ul>
+<li>主要分为三部分，配置服务副本集、分片副本集、连接 mongos 到分片集群，增加分片到集群</li>
+</ul>
+<h3 id="编写dockerFile"><a href="#编写dockerFile" class="headerlink" title="编写dockerFile"></a>编写dockerFile</h3><ul>
+<li>–configsvr的作用是将端口改为27019</li>
+<li>–shardsvr的作用是将端口改为27018</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">version: '3'</span></span><br><span class="line"><span class="function"><span class="title">services</span>:</span></span><br><span class="line"><span class="function">  <span class="title">conf1</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">conf1</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27017:27019</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">configsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">conf</span></span></span><br><span class="line"><span class="function">  <span class="title">conf2</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">conf2</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27018:27019</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">configsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">conf</span></span></span><br><span class="line"><span class="function">  <span class="title">conf3</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">conf3</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27019:27019</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">configsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">conf</span></span></span><br><span class="line"><span class="function">  <span class="title">sh1</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">sh1</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27027:27018</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">shardsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">sh1</span></span></span><br><span class="line"><span class="function">  <span class="title">sh2</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">sh2</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27028:27018</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">shardsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">sh1</span></span></span><br><span class="line"><span class="function">  <span class="title">sh3</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">sh3</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27029:27018</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">shardsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">sh1</span></span></span><br><span class="line"><span class="function">  <span class="title">sh4</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">sh4</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27037:27018</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">shardsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">sh2</span></span></span><br><span class="line"><span class="function">  <span class="title">sh5</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">sh5</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27038:27018</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">shardsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">sh2</span></span></span><br><span class="line"><span class="function">  <span class="title">sh6</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">sh6</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 27039:27018</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongod</span> --<span class="title">shardsvr</span> --<span class="title">dbpath</span> /<span class="title">data</span>/<span class="title">db</span> --<span class="title">replSet</span> <span class="title">sh2</span></span></span><br><span class="line"><span class="function">  <span class="title">mongos</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">mongo</span>:3.4</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">mongos</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 21017:27017</span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">mongos</span> --<span class="title">configdb</span> <span class="title">conf</span>/172.16.11.130:27017,172.16.11.130:27018,172.16.11.130:27019</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动docker容器</li>
+</ul>
+<h3 id="配置服务副本集"><a href="#配置服务副本集" class="headerlink" title="配置服务副本集"></a>配置服务副本集</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">docker-compose exec conf1 mongo --port=<span class="number">27019</span></span><br><span class="line">config = &#123;</span><br><span class="line">      "_id" : "conf",</span><br><span class="line">      "members" : [</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">0</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27017</span>"</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">1</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27018</span>"</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">2</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27019</span>"</span><br><span class="line">          &#125;</span><br><span class="line">      ]</span><br><span class="line">&#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<h3 id="配置分片1、2副本集"><a href="#配置分片1、2副本集" class="headerlink" title="配置分片1、2副本集"></a>配置分片1、2副本集</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">docker-compose exec sh1 mongo --port=<span class="number">27018</span></span><br><span class="line">config = &#123;</span><br><span class="line">      "_id" : "sh1",</span><br><span class="line">      "members" : [</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">0</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27027</span>"</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">1</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27028</span>"</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">2</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27029</span>"</span><br><span class="line">          &#125;</span><br><span class="line">      ]</span><br><span class="line">&#125;</span><br><span class="line">rs.initiate(config)</span><br><span class="line">docker-compose exec sh4 mongo --port=<span class="number">27018</span></span><br><span class="line">config = &#123;</span><br><span class="line">      "_id" : "sh2",</span><br><span class="line">      "members" : [</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">0</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27037</span>"</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">1</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27038</span>"</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              "_id" : <span class="number">2</span>,</span><br><span class="line">              "host" : "<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27039</span>"</span><br><span class="line">          &#125;</span><br><span class="line">      ]</span><br><span class="line">&#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<h3 id="配置mongos添加分片"><a href="#配置mongos添加分片" class="headerlink" title="配置mongos添加分片"></a>配置mongos添加分片</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker-compose exec mongos mongo</span><br><span class="line">sh.addShard("sh1/<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27027</span>,<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27028</span>,<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27029</span>")</span><br><span class="line">sh.addShard("sh2/<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27037</span>,<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27038</span>,<span class="number">172</span>.<span class="number">16</span>.<span class="number">11</span>.<span class="number">130</span>:<span class="number">27039</span>")</span><br></pre></td></tr></table></figure>
+<h3 id="数据库、集合启用分片"><a href="#数据库、集合启用分片" class="headerlink" title="数据库、集合启用分片"></a>数据库、集合启用分片</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh.enableSharding("test")</span><br><span class="line">sh.shardCollection("test.test", &#123;"_id": "hashed" &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="python连接mongos测试"><a href="#python连接mongos测试" class="headerlink" title="python连接mongos测试"></a>python连接mongos测试</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line"></span><br><span class="line">myclient = pymongo.MongoClient(<span class="string">"mongodb://172.16.11.130:21017"</span>)</span><br><span class="line">mydb = myclient[<span class="string">'test'</span>]</span><br><span class="line">mycol = mydb[<span class="string">'test'</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):</span><br><span class="line">    mycol.insert_one(&#123;<span class="string">'name'</span>: <span class="string">"李旭"</span>, <span class="string">'sex'</span>: <span class="string">'男'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="验证故障转移"><a href="#验证故障转移" class="headerlink" title="验证故障转移"></a>验证故障转移</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop sh1</span><br><span class="line">docker stop sh4</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将两台主机关机，然后查询</li>
+</ul>
+
+            <div class="post-copyright">
+    <!--<div class="content">
+        <p>最后更新： 2020年11月30日 13:48</p>
+        <p>原始链接： <a class="post-url" href="/2019/07/04/mongo集群分片/" title="mongo集群分片">https://xulovemin.github.io/2019/07/04/mongo集群分片/</a></p>
+        <footer>
+            <a href="https://xulovemin.github.io">
+                <img src="/images/logo.png" alt="格罗姆·地狱咆哮">
+                格罗姆·地狱咆哮
+            </a>
+        </footer>
+    </div>-->
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/集群/" class="color3">集群</a>
+      
+    <a href="/tags/mongo/" class="color1">mongo</a>
+      
+    <a href="/tags/分片/" class="color3">分片</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写dockerFile"><span class="post-toc-text">编写dockerFile</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置服务副本集"><span class="post-toc-text">配置服务副本集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置分片1、2副本集"><span class="post-toc-text">配置分片1、2副本集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置mongos添加分片"><span class="post-toc-text">配置mongos添加分片</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据库、集合启用分片"><span class="post-toc-text">数据库、集合启用分片</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#python连接mongos测试"><span class="post-toc-text">python连接mongos测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#验证故障转移"><span class="post-toc-text">验证故障转移</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/07/09/nginx部署与负载/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          nginx部署与负载
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/06/27/docker哨兵/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">docker哨兵</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        &copy; 格罗姆·地狱咆哮<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://xulovemin.github.io",
+      animate: true,
+      isHome: false,
+      share: false,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="关键字搜索..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
