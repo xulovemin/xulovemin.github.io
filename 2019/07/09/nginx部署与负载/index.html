@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="网络记事本">
 <meta property="og:description" content="nginx容器内的一些目录 /usr/share/nginx 存放静态html  /var/log/nginx 存放log的地方  /etc/nginx 存放nginx.conf配置的地方，它引入的是下面路径里面的conf文件  /etc/nginx/conf.d 引入的conf文件，默认default.conf，可以自定义  运行nginx时需要将default.conf拷贝出来，然后挂载到容器">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-30T05:48:41.088Z">
+<meta property="og:updated_time" content="2020-12-20T04:05:56.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx部署与负载">
 <meta name="twitter:description" content="nginx容器内的一些目录 /usr/share/nginx 存放静态html  /var/log/nginx 存放log的地方  /etc/nginx 存放nginx.conf配置的地方，它引入的是下面路径里面的conf文件  /etc/nginx/conf.d 引入的conf文件，默认default.conf，可以自定义  运行nginx时需要将default.conf拷贝出来，然后挂载到容器">
@@ -160,6 +160,9 @@
 <li><p>配置nginx的conf文件</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen     <span class="number">80</span>;</span><br><span class="line">    location / &#123;</span><br><span class="line">        # 内网ip端口即可访问</span><br><span class="line">        proxy_pass http://<span class="number">172</span>.<span class="number">17</span>.<span class="number">0</span>.<span class="number">2</span>:<span class="number">5000</span>; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>nginx配置stream,新版本功能，可以代理TCP协议，可以负载MySQL、oracle等</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">stream&#123;</span><br><span class="line">	upstream mysql&#123;</span><br><span class="line">		server mysql:<span class="number">3306</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	server&#123;</span><br><span class="line">		listen <span class="number">3306</span>;</span><br><span class="line">		proxy_pass mysql;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>nginx支持高并发，放到服务前面缓解压力</p>
 </li>
 </ul>
@@ -181,7 +184,7 @@
 
             <div class="post-copyright">
     <!--<div class="content">
-        <p>最后更新： 2020年11月30日 13:48</p>
+        <p>最后更新： 2020年12月20日 12:05</p>
         <p>原始链接： <a class="post-url" href="/2019/07/09/nginx部署与负载/" title="nginx部署与负载">https://xulovemin.github.io/2019/07/09/nginx部署与负载/</a></p>
         <footer>
             <a href="https://xulovemin.github.io">

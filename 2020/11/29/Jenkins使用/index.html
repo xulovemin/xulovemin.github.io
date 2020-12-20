@@ -8,13 +8,13 @@
   
     <meta name="keywords" content="网络记事本">
   
-  <meta name="description" content="Jenkins安装 启动Jenkins1234567891011version: &apos;3&apos;services:  jenkins:    container_name: jenkins    image: jenkinsci/blueocean    ports:      - 8090:8080    volumes:      - /data/jenkins:/var/jenkins_home">
+  <meta name="description" content="Jenkins安装 启动Jenkins12345678910111213version: &apos;3&apos;services:  jenkins:    container_name: jenkins    image: jenkinsci/blueocean    # 指定docker用户    user: root    ports:      - 8090:8080    volumes:      -">
 <meta name="keywords" content="持续集成,持续部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jenkins使用">
 <meta property="og:url" content="https://xulovemin.github.io/2020/11/29/Jenkins使用/index.html">
 <meta property="og:site_name" content="网络记事本">
-<meta property="og:description" content="Jenkins安装 启动Jenkins1234567891011version: &apos;3&apos;services:  jenkins:    container_name: jenkins    image: jenkinsci/blueocean    ports:      - 8090:8080    volumes:      - /data/jenkins:/var/jenkins_home">
+<meta property="og:description" content="Jenkins安装 启动Jenkins12345678910111213version: &apos;3&apos;services:  jenkins:    container_name: jenkins    image: jenkinsci/blueocean    # 指定docker用户    user: root    ports:      - 8090:8080    volumes:      -">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://xulovemin.github.io/2020/11/29/Jenkins使用/webhook.jpg">
 <meta property="og:image" content="https://xulovemin.github.io/2020/11/29/Jenkins使用/sshserver.jpg">
@@ -28,10 +28,10 @@
 <meta property="og:image" content="https://xulovemin.github.io/2020/11/29/Jenkins使用/role1.jpg">
 <meta property="og:image" content="https://xulovemin.github.io/2020/11/29/Jenkins使用/role2.jpg">
 <meta property="og:image" content="https://xulovemin.github.io/2020/11/29/Jenkins使用/role3.jpg">
-<meta property="og:updated_time" content="2020-12-10T03:10:24.573Z">
+<meta property="og:updated_time" content="2020-12-20T04:01:09.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins使用">
-<meta name="twitter:description" content="Jenkins安装 启动Jenkins1234567891011version: &apos;3&apos;services:  jenkins:    container_name: jenkins    image: jenkinsci/blueocean    ports:      - 8090:8080    volumes:      - /data/jenkins:/var/jenkins_home">
+<meta name="twitter:description" content="Jenkins安装 启动Jenkins12345678910111213version: &apos;3&apos;services:  jenkins:    container_name: jenkins    image: jenkinsci/blueocean    # 指定docker用户    user: root    ports:      - 8090:8080    volumes:      -">
 <meta name="twitter:image" content="https://xulovemin.github.io/2020/11/29/Jenkins使用/webhook.jpg">
   
   
@@ -148,7 +148,7 @@
       
             
             <h3 id="Jenkins安装"><a href="#Jenkins安装" class="headerlink" title="Jenkins安装"></a>Jenkins安装</h3><ul>
-<li>启动Jenkins<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">version: '3'</span></span><br><span class="line"><span class="function"><span class="title">services</span>:</span></span><br><span class="line"><span class="function">  <span class="title">jenkins</span>:</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">jenkins</span></span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">jenkinsci</span>/<span class="title">blueocean</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 8090:8080</span></span><br><span class="line"><span class="function">    <span class="title">volumes</span>:</span></span><br><span class="line"><span class="function">      - /<span class="title">data</span>/<span class="title">jenkins</span>:/<span class="title">var</span>/<span class="title">jenkins_home</span></span></span><br><span class="line"><span class="function">      # 这个很重要，可以让<span class="title">Jenkins</span>容器里面使用<span class="title">docker</span></span></span><br><span class="line"><span class="function">      - /<span class="title">var</span>/<span class="title">run</span>/<span class="title">docker.sock</span>:/<span class="title">var</span>/<span class="title">run</span>/<span class="title">docker.sock</span></span></span><br></pre></td></tr></table></figure>
+<li>启动Jenkins<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">version: '3'</span></span><br><span class="line"><span class="function"><span class="title">services</span>:</span></span><br><span class="line"><span class="function">  <span class="title">jenkins</span>:</span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">jenkins</span></span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">jenkinsci</span>/<span class="title">blueocean</span></span></span><br><span class="line"><span class="function">    # 指定<span class="title">docker</span>用户</span></span><br><span class="line"><span class="function">    <span class="title">user</span>: <span class="title">root</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 8090:8080</span></span><br><span class="line"><span class="function">    <span class="title">volumes</span>:</span></span><br><span class="line"><span class="function">      - /<span class="title">data</span>/<span class="title">jenkins</span>:/<span class="title">var</span>/<span class="title">jenkins_home</span></span></span><br><span class="line"><span class="function">      # 这个很重要，可以让<span class="title">Jenkins</span>容器里面使用<span class="title">docker</span></span></span><br><span class="line"><span class="function">      - /<span class="title">var</span>/<span class="title">run</span>/<span class="title">docker.sock</span>:/<span class="title">var</span>/<span class="title">run</span>/<span class="title">docker.sock</span></span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="jenkins系统管理配置"><a href="#jenkins系统管理配置" class="headerlink" title="jenkins系统管理配置"></a>jenkins系统管理配置</h3><ul>
@@ -211,7 +211,7 @@
 
             <div class="post-copyright">
     <!--<div class="content">
-        <p>最后更新： 2020年12月10日 11:10</p>
+        <p>最后更新： 2020年12月20日 12:01</p>
         <p>原始链接： <a class="post-url" href="/2020/11/29/Jenkins使用/" title="Jenkins使用">https://xulovemin.github.io/2020/11/29/Jenkins使用/</a></p>
         <footer>
             <a href="https://xulovemin.github.io">

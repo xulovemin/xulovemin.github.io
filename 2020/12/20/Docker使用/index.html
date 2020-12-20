@@ -8,18 +8,18 @@
   
     <meta name="keywords" content="网络记事本">
   
-  <meta name="description" content="docker 安装目录修改 软连接方式 123456systemctl start dockersystemctl stop dockercd /var/libcp –rf docker /datarm –rf dockerln –s /data/docker docker  镜像导入导出 12docker save nginx &amp;gt; nginx.tardocker load &amp;lt; ngi">
+  <meta name="description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   docker 安装目录修改 软连接方式 123456systemctl start">
 <meta name="keywords" content="docker,部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker使用">
-<meta property="og:url" content="https://xulovemin.github.io/2020/11/30/Docker使用/index.html">
+<meta property="og:url" content="https://xulovemin.github.io/2020/12/20/Docker使用/index.html">
 <meta property="og:site_name" content="网络记事本">
-<meta property="og:description" content="docker 安装目录修改 软连接方式 123456systemctl start dockersystemctl stop dockercd /var/libcp –rf docker /datarm –rf dockerln –s /data/docker docker  镜像导入导出 12docker save nginx &amp;gt; nginx.tardocker load &amp;lt; ngi">
+<meta property="og:description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   docker 安装目录修改 软连接方式 123456systemctl start">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-30T05:48:41.079Z">
+<meta property="og:updated_time" content="2020-12-20T04:01:09.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker使用">
-<meta name="twitter:description" content="docker 安装目录修改 软连接方式 123456systemctl start dockersystemctl stop dockercd /var/libcp –rf docker /datarm –rf dockerln –s /data/docker docker  镜像导入导出 12docker save nginx &amp;gt; nginx.tardocker load &amp;lt; ngi">
+<meta name="twitter:description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   docker 安装目录修改 软连接方式 123456systemctl start">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -118,7 +118,7 @@
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2020-11-30
+          <i class="fa fa-calendar"></i>  2020-12-20
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -134,7 +134,11 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="docker-安装目录修改"><a href="#docker-安装目录修改" class="headerlink" title="docker 安装目录修改"></a>docker 安装目录修改</h3><ul>
+            <h3 id="阿里源安装docker"><a href="#阿里源安装docker" class="headerlink" title="阿里源安装docker"></a>阿里源安装docker</h3><ul>
+<li>yum安装<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">yum makecache fast</span><br><span class="line">yum -y install docker-ce</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="docker-安装目录修改"><a href="#docker-安装目录修改" class="headerlink" title="docker 安装目录修改"></a>docker 安装目录修改</h3><ul>
 <li><p>软连接方式</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">start</span> docker</span><br><span class="line">systemctl stop docker</span><br><span class="line"><span class="built_in">cd</span> /var/lib</span><br><span class="line">cp –rf docker /data</span><br><span class="line">rm –rf docker</span><br><span class="line">ln –s /data/docker docker</span><br></pre></td></tr></table></figure>
 </li>
@@ -183,7 +187,7 @@
 </ul>
 <h3 id="docker-常用命令"><a href="#docker-常用命令" class="headerlink" title="docker 常用命令"></a>docker 常用命令</h3><ul>
 <li><p>镜像类</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker build --rm=true . 构建镜像</span><br><span class="line">docker pull $&#123;IMAGE&#125; 安装镜像</span><br><span class="line">docker images 显示已经安装的镜像</span><br><span class="line">docker images --no-trunc 显示已经安装镜像的详细内容</span><br><span class="line">docker rmi $&#123;IMAGE_ID&#125; 删除指定镜像</span><br><span class="line">docker rmi $(docker images | grep "^" | awk "&#123;<span class="built_in">print</span> $<span class="number">3</span>&#125;") 删除所有没有标签的镜像</span><br><span class="line">docker rmi -f $(docker images | awk "/^&lt;none&gt;/ &#123; <span class="built_in">print</span> $<span class="number">3</span> &#125;") 删除所有是none的dockers镜像</span><br><span class="line">docker rmi $(docker images --quiet --filter &amp;quot;dangling=true&amp;quot;) 删除未使用的镜像</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker build --rm=true . 构建镜像</span><br><span class="line">docker pull $&#123;IMAGE&#125; 安装镜像</span><br><span class="line">docker images 显示已经安装的镜像</span><br><span class="line">docker images --no-trunc 显示已经安装镜像的详细内容</span><br><span class="line">docker rmi $&#123;IMAGE_ID&#125; 删除指定镜像</span><br><span class="line">docker rmi -f $(docker images | grep none | awk '&#123;<span class="built_in">print</span> $<span class="number">3</span>&#125;' | xargs)</span><br><span class="line">docker rmi -f $(docker images | awk "/^&lt;none&gt;/ &#123; <span class="built_in">print</span> $<span class="number">3</span> &#125;") 删除所有是none的dockers镜像</span><br><span class="line">docker rmi $(docker images --quiet --filter &amp;quot;dangling=true&amp;quot;) 删除未使用的镜像</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>容器类</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker run 运行容器</span><br><span class="line">docker ps 显示正在运行的容器</span><br><span class="line">docker ps -a 显示所有的容器</span><br><span class="line">docker stop $&#123;CID&#125; 停止指定容器</span><br><span class="line">docker ps -a --filter &amp;quot;exited=<span class="number">1</span>&amp;quot; 显示所有退出状态为<span class="number">1</span>的容器</span><br><span class="line">docker rm $&#123;CID&#125; 删除指定容器</span><br><span class="line">docker ps -a | grep wildfly | awk '&#123;<span class="built_in">print</span> $<span class="number">1</span>&#125;' | xargs docker rm -f 使用正则表达式删除容器</span><br><span class="line">docker stop docker ps -q 停止所有正在运行的容器</span><br><span class="line">docker rm $(docker ps -aq) 删除所有停止的容器</span><br><span class="line">docker rm -f $(docker ps -a | grep <span class="keyword">Exit</span> | awk '&#123; <span class="built_in">print</span> $<span class="number">1</span> &#125;') 删除所有退出的容器</span><br><span class="line">docker exec -it $&#123;CID&#125; /bin/sh 进入容器打开一个shell</span><br><span class="line">docker ps | grep wildfly | awk "&#123;<span class="built_in">print</span> $<span class="number">1</span>&#125;" 通过正则表达式查找容器的镜像ID</span><br></pre></td></tr></table></figure>
@@ -192,8 +196,8 @@
 
             <div class="post-copyright">
     <!--<div class="content">
-        <p>最后更新： 2020年11月30日 13:48</p>
-        <p>原始链接： <a class="post-url" href="/2020/11/30/Docker使用/" title="Docker使用">https://xulovemin.github.io/2020/11/30/Docker使用/</a></p>
+        <p>最后更新： 2020年12月20日 12:01</p>
+        <p>原始链接： <a class="post-url" href="/2020/12/20/Docker使用/" title="Docker使用">https://xulovemin.github.io/2020/12/20/Docker使用/</a></p>
         <footer>
             <a href="https://xulovemin.github.io">
                 <img src="/images/logo.png" alt="格罗姆·地狱咆哮">
@@ -232,7 +236,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-安装目录修改"><span class="post-toc-text">docker 安装目录修改</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#dockerfile-文件"><span class="post-toc-text">dockerfile 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-compose-单机容器编排"><span class="post-toc-text">docker-compose 单机容器编排</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-常用命令"><span class="post-toc-text">docker 常用命令</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#阿里源安装docker"><span class="post-toc-text">阿里源安装docker</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-安装目录修改"><span class="post-toc-text">docker 安装目录修改</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#dockerfile-文件"><span class="post-toc-text">dockerfile 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-compose-单机容器编排"><span class="post-toc-text">docker-compose 单机容器编排</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-常用命令"><span class="post-toc-text">docker 常用命令</span></a></li></ol>
         </nav>
     </aside>
     
