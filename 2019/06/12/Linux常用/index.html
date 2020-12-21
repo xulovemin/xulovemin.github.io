@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="网络记事本">
 <meta property="og:description" content="Centos7安装chrome浏览器 安装google chrome浏览器 12wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpmyum install google-chrome-stable_current_x86_64.rpm  chromedriver下载 1http://npm.t">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-30T05:48:41.086Z">
+<meta property="og:updated_time" content="2020-12-21T09:28:21.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用">
 <meta name="twitter:description" content="Centos7安装chrome浏览器 安装google chrome浏览器 12wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpmyum install google-chrome-stable_current_x86_64.rpm  chromedriver下载 1http://npm.t">
@@ -156,12 +156,22 @@
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">https://<span class="title">www.cnblogs.com</span>/<span class="title">white</span>-<span class="title">the</span>-<span class="title">Alan</span>/<span class="title">p</span>/8901118.<span class="title">html</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>git移除版本控制</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm -f -r --cached 文件名</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm -f -r --cached 文件名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看centos版本</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看空间</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df -h 查看磁盘空间</span><br><span class="line">du -h --max-depth=<span class="number">1</span> 查看当前目录占用空间</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看端口占用</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># -a 所有</span><br><span class="line"># -n 显示数字</span><br><span class="line"># -t 显示tcp相关</span><br><span class="line"># -u 显示dup相关</span><br><span class="line"># -p 显示程序名</span><br><span class="line"># -l 仅显示listen的服务</span><br><span class="line"># -r 显示路由信息</span><br><span class="line"># -e 显示扩展信息，例如uid等</span><br><span class="line"># -s 按各个协议进行统计</span><br><span class="line"># -c 每隔一个固定时间，执行该netstat命令。</span><br><span class="line">sudo netstat -antp|grep <span class="number">5000</span> #查看端口占用</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
             <div class="post-copyright">
     <!--<div class="content">
-        <p>最后更新： 2020年11月30日 13:48</p>
+        <p>最后更新： 2020年12月21日 17:28</p>
         <p>原始链接： <a class="post-url" href="/2019/06/12/Linux常用/" title="Linux常用">https://xulovemin.github.io/2019/06/12/Linux常用/</a></p>
         <footer>
             <a href="https://xulovemin.github.io">
