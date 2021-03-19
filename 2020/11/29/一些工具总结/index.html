@@ -3,20 +3,18 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>一些工具总结 | 网络记事本</title>
+  <title>一些工具总结 | 记事本</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-    <meta name="keywords" content="网络记事本">
   
   <meta name="description" content="批量打包镜像1docker save $(docker images | grep -v REPOSITORY | awk &apos;BEGIN&amp;#123;OFS=&quot;:&quot;;ORS=&quot; &quot;&amp;#125;&amp;#123;print $1,$2&amp;#125;&apos;) -o package.tar 一些命令123456789101112java -jar xxx.jar -d -m test@test.com -n wiki">
 <meta name="keywords" content="Linux,工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些工具总结">
 <meta property="og:url" content="https://xulovemin.github.io/2020/11/29/一些工具总结/index.html">
-<meta property="og:site_name" content="网络记事本">
+<meta property="og:site_name" content="记事本">
 <meta property="og:description" content="批量打包镜像1docker save $(docker images | grep -v REPOSITORY | awk &apos;BEGIN&amp;#123;OFS=&quot;:&quot;;ORS=&quot; &quot;&amp;#125;&amp;#123;print $1,$2&amp;#125;&apos;) -o package.tar 一些命令123456789101112java -jar xxx.jar -d -m test@test.com -n wiki">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-30T05:48:41.089Z">
+<meta property="og:updated_time" content="2021-03-19T01:54:00.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些工具总结">
 <meta name="twitter:description" content="批量打包镜像1docker save $(docker images | grep -v REPOSITORY | awk &apos;BEGIN&amp;#123;OFS=&quot;:&quot;;ORS=&quot; &quot;&amp;#125;&amp;#123;print $1,$2&amp;#125;&apos;) -o package.tar 一些命令123456789101112java -jar xxx.jar -d -m test@test.com -n wiki">
@@ -84,7 +82,7 @@
                 <div id="header-description">
                     
                     <h3>
-                        格罗姆·地狱咆哮
+                        希尔瓦娜斯·风行者
                     </h3>
                     
                 </div>
@@ -145,14 +143,16 @@
 <h3 id="安装push插件"><a href="#安装push插件" class="headerlink" title="安装push插件"></a>安装push插件</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">helm plugin install https://github.com/chartmuseum/helm-push.git</span><br><span class="line">添加源</span><br><span class="line">helm repo add harbor http://xulovemin1413.xyz:<span class="number">8080</span>/chartrepo/lixu --username admin --password Harbor12345</span><br><span class="line">helm push </span><br><span class="line">helm install</span><br></pre></td></tr></table></figure>
 <h3 id="pip离线安装"><a href="#pip离线安装" class="headerlink" title="pip离线安装"></a>pip离线安装</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt;requirements.txt</span><br><span class="line">pip download -d c:\tempfile -r &gt;requirements.txt</span><br><span class="line">pip install --no-index --<span class="built_in">find</span>-links=c:\tempfile -r requirements.txt</span><br></pre></td></tr></table></figure>
 <h3 id="anaconda一些命令"><a href="#anaconda一些命令" class="headerlink" title="anaconda一些命令"></a>anaconda一些命令</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">conda config --<span class="built_in">set</span> auto_activate_base false 不自动激活进入base环境</span><br><span class="line">conda env list</span><br><span class="line">conda list</span><br><span class="line">conda install</span><br><span class="line">conda activate 虚拟环境</span><br><span class="line">conda deactivate</span><br><span class="line">conda create -n 环境名 python=<span class="number">3</span>.<span class="number">6</span></span><br><span class="line">conda remove -n 环境名 --all</span><br><span class="line">conda --version  # 查看当前conda版本</span><br><span class="line">conda update conda  # 升级当前conda</span><br><span class="line">conda config --show-sources</span><br><span class="line">#添加清华的源</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --remove channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda环境导出</span><br><span class="line">conda env export --file abc.yml</span><br><span class="line">conda env create -f abc.yml</span><br></pre></td></tr></table></figure>
+<h3 id="WIN10升级企业版密钥"><a href="#WIN10升级企业版密钥" class="headerlink" title="WIN10升级企业版密钥"></a>WIN10升级企业版密钥</h3><pre><code>NPPR9-FWDCX-D2C8J-H872K-2YT43
+</code></pre>
             <div class="post-copyright">
     <!--<div class="content">
-        <p>最后更新： 2020年11月30日 13:48</p>
+        <p>最后更新： 2021年03月19日 09:54</p>
         <p>原始链接： <a class="post-url" href="/2020/11/29/一些工具总结/" title="一些工具总结">https://xulovemin.github.io/2020/11/29/一些工具总结/</a></p>
         <footer>
             <a href="https://xulovemin.github.io">
-                <img src="/images/logo.png" alt="格罗姆·地狱咆哮">
-                格罗姆·地狱咆哮
+                <img src="/images/logo.png" alt="">
+                
             </a>
         </footer>
     </div>-->
@@ -187,7 +187,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#批量打包镜像"><span class="post-toc-text">批量打包镜像</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一些命令"><span class="post-toc-text">一些命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#给普通用户添加sudo权限"><span class="post-toc-text">给普通用户添加sudo权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义yum源"><span class="post-toc-text">自定义yum源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#硬盘操作"><span class="post-toc-text">硬盘操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#helm安装"><span class="post-toc-text">helm安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#harbor安装"><span class="post-toc-text">harbor安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用http登录harbor"><span class="post-toc-text">用http登录harbor</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装push插件"><span class="post-toc-text">安装push插件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#pip离线安装"><span class="post-toc-text">pip离线安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#anaconda一些命令"><span class="post-toc-text">anaconda一些命令</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#批量打包镜像"><span class="post-toc-text">批量打包镜像</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一些命令"><span class="post-toc-text">一些命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#给普通用户添加sudo权限"><span class="post-toc-text">给普通用户添加sudo权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义yum源"><span class="post-toc-text">自定义yum源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#硬盘操作"><span class="post-toc-text">硬盘操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#helm安装"><span class="post-toc-text">helm安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#harbor安装"><span class="post-toc-text">harbor安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用http登录harbor"><span class="post-toc-text">用http登录harbor</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装push插件"><span class="post-toc-text">安装push插件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#pip离线安装"><span class="post-toc-text">pip离线安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#anaconda一些命令"><span class="post-toc-text">anaconda一些命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#WIN10升级企业版密钥"><span class="post-toc-text">WIN10升级企业版密钥</span></a></li></ol>
         </nav>
     </aside>
     
@@ -224,7 +224,7 @@
       
 
       <p>
-        &copy; 格罗姆·地狱咆哮<br>
+        &copy; 记事本<br>
       </p>
     </div>
   </div>
@@ -257,10 +257,10 @@
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
+            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/休闲贴/">休闲贴</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/电影网站/" style="font-size: 10px;">电影网站</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -293,7 +293,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/电影网站/" style="font-size: 10px;">电影网站</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
         </div>
     </div>
 </div>

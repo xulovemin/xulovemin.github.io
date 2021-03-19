@@ -3,23 +3,21 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Docker使用 | 网络记事本</title>
+  <title>Docker使用 | 记事本</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    <meta name="keywords" content="网络记事本">
-  
-  <meta name="description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   docker 安装目录修改 软连接方式 123456systemctl start">
+  <meta name="description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   二进制安装 安装 123456789101112131415161718192021">
 <meta name="keywords" content="docker,部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker使用">
 <meta property="og:url" content="https://xulovemin.github.io/2020/12/20/Docker使用/index.html">
-<meta property="og:site_name" content="网络记事本">
-<meta property="og:description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   docker 安装目录修改 软连接方式 123456systemctl start">
+<meta property="og:site_name" content="记事本">
+<meta property="og:description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   二进制安装 安装 123456789101112131415161718192021">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-12-20T04:01:09.858Z">
+<meta property="og:updated_time" content="2021-03-19T01:41:01.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker使用">
-<meta name="twitter:description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   docker 安装目录修改 软连接方式 123456systemctl start">
+<meta name="twitter:description" content="阿里源安装docker yum安装123yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repoyum makecache fastyum -y install docker-ce   二进制安装 安装 123456789101112131415161718192021">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -84,7 +82,7 @@
                 <div id="header-description">
                     
                     <h3>
-                        格罗姆·地狱咆哮
+                        希尔瓦娜斯·风行者
                     </h3>
                     
                 </div>
@@ -136,6 +134,14 @@
             
             <h3 id="阿里源安装docker"><a href="#阿里源安装docker" class="headerlink" title="阿里源安装docker"></a>阿里源安装docker</h3><ul>
 <li>yum安装<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">yum makecache fast</span><br><span class="line">yum -y install docker-ce</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="二进制安装"><a href="#二进制安装" class="headerlink" title="二进制安装"></a>二进制安装</h3><ul>
+<li><p>安装</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf docker-<span class="number">17</span>.<span class="number">03</span>.<span class="number">0</span>-ce.tgz</span><br><span class="line">cp docker/* /usr/local/bin</span><br><span class="line">vim /etc/systemd/system/docker.service</span><br><span class="line">``` </span><br><span class="line">- service内容</span><br><span class="line">```<span class="built_in">cmd</span></span><br><span class="line">[Unit]</span><br><span class="line">Description=Docker Application Container Engine</span><br><span class="line">Documentation=http://docs.docker.io</span><br><span class="line">[Service]</span><br><span class="line">Environment="<span class="built_in">PATH</span>=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin"</span><br><span class="line">EnvironmentFile=-/run/flannel/docker</span><br><span class="line">ExecStart=/usr/local/bin/dockerd --log-level=error $DOCKER_NETWORK_OPTIONS</span><br><span class="line">ExecReload=/bin/kill -s HUP $MAINPID</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=<span class="number">5</span></span><br><span class="line">LimitNOFILE=infinity</span><br><span class="line">LimitNPROC=infinity</span><br><span class="line">LimitCORE=infinity</span><br><span class="line">Delegate=yes</span><br><span class="line">KillMode=process</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload   //重载systemd下 xxx.service文件</span><br><span class="line">systemctl status docker</span><br><span class="line">systemctl <span class="built_in">start</span> docker    //启动Docker</span><br><span class="line">systemctl enable docker.service   //设置开机自启</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="docker-安装目录修改"><a href="#docker-安装目录修改" class="headerlink" title="docker 安装目录修改"></a>docker 安装目录修改</h3><ul>
@@ -196,12 +202,12 @@
 
             <div class="post-copyright">
     <!--<div class="content">
-        <p>最后更新： 2020年12月20日 12:01</p>
+        <p>最后更新： 2021年03月19日 09:41</p>
         <p>原始链接： <a class="post-url" href="/2020/12/20/Docker使用/" title="Docker使用">https://xulovemin.github.io/2020/12/20/Docker使用/</a></p>
         <footer>
             <a href="https://xulovemin.github.io">
-                <img src="/images/logo.png" alt="格罗姆·地狱咆哮">
-                格罗姆·地狱咆哮
+                <img src="/images/logo.png" alt="">
+                
             </a>
         </footer>
     </div>-->
@@ -236,12 +242,22 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#阿里源安装docker"><span class="post-toc-text">阿里源安装docker</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-安装目录修改"><span class="post-toc-text">docker 安装目录修改</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#dockerfile-文件"><span class="post-toc-text">dockerfile 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-compose-单机容器编排"><span class="post-toc-text">docker-compose 单机容器编排</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-常用命令"><span class="post-toc-text">docker 常用命令</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#阿里源安装docker"><span class="post-toc-text">阿里源安装docker</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二进制安装"><span class="post-toc-text">二进制安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-安装目录修改"><span class="post-toc-text">docker 安装目录修改</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#dockerfile-文件"><span class="post-toc-text">dockerfile 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-compose-单机容器编排"><span class="post-toc-text">docker-compose 单机容器编排</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker-常用命令"><span class="post-toc-text">docker 常用命令</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
+  
+    <a href="/2021/01/10/电影网站/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          电影网站
+        
+      </span>
+    </a>
   
   
     <a href="/2020/11/29/一些工具总结/" id="article-nav-older" class="article-nav-link-wrap">
@@ -263,7 +279,7 @@
       
 
       <p>
-        &copy; 格罗姆·地狱咆哮<br>
+        &copy; 记事本<br>
       </p>
     </div>
   </div>
@@ -296,10 +312,10 @@
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
+            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/休闲贴/">休闲贴</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/电影网站/" style="font-size: 10px;">电影网站</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -332,7 +348,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 16.67px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/电影网站/" style="font-size: 10px;">电影网站</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 20px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
         </div>
     </div>
 </div>
