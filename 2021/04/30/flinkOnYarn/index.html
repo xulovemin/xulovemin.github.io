@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>flinkOnYarn | 记事本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="description" content="启动 docker-compose.yml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364version: &quot;3&quot;services:  namenode:    image: bde2020/hadoop-n">
+<meta name="keywords" content="docker,flinOnYarn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flinkOnYarn">
+<meta property="og:url" content="https://xulovemin.github.io/2021/04/30/flinkOnYarn/index.html">
+<meta property="og:site_name" content="记事本">
+<meta property="og:description" content="启动 docker-compose.yml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364version: &quot;3&quot;services:  namenode:    image: bde2020/hadoop-n">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-04-30T10:05:46.594Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="flinkOnYarn">
+<meta name="twitter:description" content="启动 docker-compose.yml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364version: &quot;3&quot;services:  namenode:    image: bde2020/hadoop-n">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">艾泽拉斯</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        艾泽拉斯
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        希尔瓦娜斯·风行者
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-flinkOnYarn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      flinkOnYarn
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/技术贴/">技术贴</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-30
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+<li><p>docker-compose.yml</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">version: "3"</span></span><br><span class="line"><span class="function"><span class="title">services</span>:</span></span><br><span class="line"><span class="function">  <span class="title">namenode</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">bde2020</span>/<span class="title">hadoop</span>-<span class="title">namenode</span>:2.0.0-<span class="title">hadoop3</span>.2.1-<span class="title">java8</span></span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">namenode</span></span></span><br><span class="line"><span class="function">    <span class="title">restart</span>: <span class="title">always</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 9870:9870</span></span><br><span class="line"><span class="function">    <span class="title">environment</span>:</span></span><br><span class="line"><span class="function">      - <span class="title">CLUSTER_NAME</span>=<span class="title">test</span></span></span><br><span class="line"><span class="function">    <span class="title">env_file</span>:</span></span><br><span class="line"><span class="function">      - ./<span class="title">hadoop.env</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  <span class="title">datanode</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">bde2020</span>/<span class="title">hadoop</span>-<span class="title">datanode</span>:2.0.0-<span class="title">hadoop3</span>.2.1-<span class="title">java8</span></span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">datanode</span></span></span><br><span class="line"><span class="function">    <span class="title">restart</span>: <span class="title">always</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 9864:9864</span></span><br><span class="line"><span class="function">    <span class="title">environment</span>:</span></span><br><span class="line"><span class="function">      <span class="title">SERVICE_PRECONDITION</span>: "<span class="title">namenode</span>:9870"</span></span><br><span class="line"><span class="function">    <span class="title">env_file</span>:</span></span><br><span class="line"><span class="function">      - ./<span class="title">hadoop.env</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">resourcemanager</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">bde2020</span>/<span class="title">hadoop</span>-<span class="title">resourcemanager</span>:2.0.0-<span class="title">hadoop3</span>.2.1-<span class="title">java8</span></span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">resourcemanager</span></span></span><br><span class="line"><span class="function">    <span class="title">restart</span>: <span class="title">always</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 8088:8088</span></span><br><span class="line"><span class="function">    <span class="title">environment</span>:</span></span><br><span class="line"><span class="function">      <span class="title">SERVICE_PRECONDITION</span>: "<span class="title">namenode</span>:9000 <span class="title">namenode</span>:9870 <span class="title">datanode</span>:9864"</span></span><br><span class="line"><span class="function">    <span class="title">env_file</span>:</span></span><br><span class="line"><span class="function">      - ./<span class="title">hadoop.env</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  <span class="title">nodemanager</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">bde2020</span>/<span class="title">hadoop</span>-<span class="title">nodemanager</span>:2.0.0-<span class="title">hadoop3</span>.2.1-<span class="title">java8</span></span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">nodemanager</span></span></span><br><span class="line"><span class="function">    <span class="title">restart</span>: <span class="title">always</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 8042:8042</span></span><br><span class="line"><span class="function">    <span class="title">environment</span>:</span></span><br><span class="line"><span class="function">      <span class="title">SERVICE_PRECONDITION</span>: "<span class="title">namenode</span>:9000 <span class="title">namenode</span>:9870 <span class="title">datanode</span>:9864 <span class="title">resourcemanager</span>:8088"</span></span><br><span class="line"><span class="function">    <span class="title">env_file</span>:</span></span><br><span class="line"><span class="function">      - ./<span class="title">hadoop.env</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">historyserver</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">bde2020</span>/<span class="title">hadoop</span>-<span class="title">historyserver</span>:2.0.0-<span class="title">hadoop3</span>.2.1-<span class="title">java8</span></span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">historyserver</span></span></span><br><span class="line"><span class="function">    <span class="title">restart</span>: <span class="title">always</span></span></span><br><span class="line"><span class="function">    <span class="title">ports</span>:</span></span><br><span class="line"><span class="function">      - 8188:8188</span></span><br><span class="line"><span class="function">    <span class="title">environment</span>:</span></span><br><span class="line"><span class="function">      <span class="title">SERVICE_PRECONDITION</span>: "<span class="title">namenode</span>:9000 <span class="title">namenode</span>:9870 <span class="title">datanode</span>:9864 <span class="title">resourcemanager</span>:8088"</span></span><br><span class="line"><span class="function">    <span class="title">env_file</span>:</span></span><br><span class="line"><span class="function">      - ./<span class="title">hadoop.env</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">  <span class="title">flink</span>-<span class="title">client</span>:</span></span><br><span class="line"><span class="function">    <span class="title">image</span>: <span class="title">flink:yarn</span></span></span><br><span class="line"><span class="function">    <span class="title">container_name</span>: <span class="title">flink</span></span></span><br><span class="line"><span class="function">    <span class="title">restart</span>: <span class="title">always</span></span></span><br><span class="line"><span class="function">    <span class="title">env_file</span>:</span></span><br><span class="line"><span class="function">      - ./<span class="title">hadoop.env</span></span></span><br><span class="line"><span class="function">    <span class="title">command</span>: <span class="title">tail</span> -<span class="title">f</span> /<span class="title">dev</span>/<span class="title">null</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Dockerfile</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FROM bde2020/hadoop-base:<span class="number">2</span>.<span class="number">0</span>.<span class="number">0</span>-hadoop3.<span class="number">2</span>.<span class="number">1</span>-java8</span><br><span class="line"><span class="built_in">COPY</span> ./flink /opt/flink</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hadoop.env</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">HIVE_SITE_CONF_javax_jdo_option_ConnectionURL=jdbc:postgresql://postgresql/metastore</span><br><span class="line">HIVE_SITE_CONF_javax_jdo_option_ConnectionDriverName=org.postgresql.Driver</span><br><span class="line">HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName=hive</span><br><span class="line">HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword=hive</span><br><span class="line">HIVE_SITE_CONF_datanucleus_autoCreateSchema=false</span><br><span class="line">HIVE_SITE_CONF_hive_metastore_uris=thrift://hive-metastore:<span class="number">9083</span></span><br><span class="line"></span><br><span class="line">CORE_CONF_fs_defaultFS=hdfs://namenode:<span class="number">9000</span></span><br><span class="line">CORE_CONF_hadoop_http_staticuser_user=root</span><br><span class="line">CORE_CONF_hadoop_proxyuser_hue_hosts=*</span><br><span class="line">CORE_CONF_hadoop_proxyuser_hue_groups=*</span><br><span class="line">CORE_CONF_io_compression_codecs=org.apache.hadoop.io.compress.SnappyCodec</span><br><span class="line"></span><br><span class="line">HDFS_CONF_dfs_webhdfs_enabled=true</span><br><span class="line">HDFS_CONF_dfs_permissions_enabled=false</span><br><span class="line">HDFS_CONF_dfs_namenode_datanode_registration_ip___hostname___check=false</span><br><span class="line"></span><br><span class="line">YARN_CONF_yarn_log___aggregation___enable=true</span><br><span class="line">YARN_CONF_yarn_log_server_url=http://historyserver:<span class="number">8188</span>/applicationhistory/logs/</span><br><span class="line">YARN_CONF_yarn_resourcemanager_recovery_enabled=true</span><br><span class="line">YARN_CONF_yarn_resourcemanager_store_class=org.apache.hadoop.yarn.server.resourcemanager.recovery.FileSystemRMStateStore</span><br><span class="line">YARN_CONF_yarn_resourcemanager_scheduler_class=org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</span><br><span class="line">YARN_CONF_yarn_scheduler_capacity_root_default_maximum___allocation___mb=<span class="number">8192</span></span><br><span class="line">YARN_CONF_yarn_scheduler_capacity_root_default_maximum___allocation___vcores=<span class="number">4</span></span><br><span class="line">YARN_CONF_yarn_resourcemanager_fs_state___store_uri=/rmstate</span><br><span class="line">YARN_CONF_yarn_resourcemanager_system___metrics___publisher_enabled=true</span><br><span class="line">YARN_CONF_yarn_resourcemanager_hostname=resourcemanager</span><br><span class="line">YARN_CONF_yarn_resourcemanager_address=resourcemanager:<span class="number">8032</span></span><br><span class="line">YARN_CONF_yarn_resourcemanager_scheduler_address=resourcemanager:<span class="number">8030</span></span><br><span class="line">YARN_CONF_yarn_resourcemanager_resource__tracker_address=resourcemanager:<span class="number">8031</span></span><br><span class="line">YARN_CONF_yarn_timeline___service_enabled=true</span><br><span class="line">YARN_CONF_yarn_timeline___service_generic___application___history_enabled=true</span><br><span class="line">YARN_CONF_yarn_timeline___service_hostname=historyserver</span><br><span class="line">YARN_CONF_mapreduce_map_output_compress=true</span><br><span class="line">YARN_CONF_mapred_map_output_compress_codec=org.apache.hadoop.io.compress.SnappyCodec</span><br><span class="line">YARN_CONF_yarn_nodemanager_resource_memory___mb=<span class="number">16384</span></span><br><span class="line">YARN_CONF_yarn_nodemanager_resource_cpu___vcores=<span class="number">8</span></span><br><span class="line">YARN_CONF_yarn_nodemanager_disk___health___checker_max___disk___utilization___per___disk___percentage=<span class="number">98</span>.<span class="number">5</span></span><br><span class="line">YARN_CONF_yarn_nodemanager_remote___app___log___dir=/app-logs</span><br><span class="line">YARN_CONF_yarn_nodemanager_aux___services=mapreduce_shuffle</span><br><span class="line">YARN_CONF_yarn_nodemanager_pmem___check___enabled=false</span><br><span class="line">YARN_CONF_yarn_nodemanager_vmem___check___enabled=false</span><br><span class="line"></span><br><span class="line">MAPRED_CONF_mapreduce_framework_name=yarn</span><br><span class="line">MAPRED_CONF_mapred_child_java_opts=-Xmx4096m</span><br><span class="line">MAPRED_CONF_mapreduce_map_memory_mb=<span class="number">4096</span></span><br><span class="line">MAPRED_CONF_mapreduce_reduce_memory_mb=<span class="number">8192</span></span><br><span class="line">MAPRED_CONF_mapreduce_map_java_opts=-Xmx3072m</span><br><span class="line">MAPRED_CONF_mapreduce_reduce_java_opts=-Xmx6144m</span><br><span class="line">MAPRED_CONF_yarn_app_mapreduce_am_env=HADOOP_MAPRED_HOME=/opt/hadoop-<span class="number">3</span>.<span class="number">2</span>.<span class="number">1</span>/</span><br><span class="line">MAPRED_CONF_mapreduce_map_env=HADOOP_MAPRED_HOME=/opt/hadoop-<span class="number">3</span>.<span class="number">2</span>.<span class="number">1</span>/</span><br><span class="line">MAPRED_CONF_mapreduce_reduce_env=HADOOP_MAPRED_HOME=/opt/hadoop-<span class="number">3</span>.<span class="number">2</span>.<span class="number">1</span>/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>flink、hadoop都可以下载最新版本</li>
+<li>flink-shaded-hadoop-2-uber-2.8.3-10.0.jar需要拷贝到flink的lib目录里面</li>
+<li>flink在这里也只作为一个客户端，使用yarn-session.sh -n 3 -s 3 -nm flink-sessiontest -d会直接在yarn上面启动flink集群<pre><code>-n,–container ：在yarn中启动container的个数，实质就是TaskManager的个数
+-s,–slots ：每个TaskManager管理的Slot个数
+-nm,–name :给当前的yarn-session(Flink集群)起一个名字
+-d,–detached:后台独立模式启动，守护进程
+-tm,–taskManagerMemory ：TaskManager的内存大小 单位：MB
+-jm,–jobManagerMemory ：JobManager的内
+</code></pre></li>
+<li>然后flink run -c com.stream.Test -yid application_1608200066135_0002 -p 15 xxx.jar 将任务提交到yarn运行</li>
+<li>yarn启动flink集群会随机生成端口号才能查看flink的webui界面</li>
+<li>查看日志也不是很方便</li>
+</ul>
+
+            <div class="post-copyright">
+    <!--<div class="content">
+        <p>最后更新： 2021年04月30日 18:05</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/30/flinkOnYarn/" title="flinkOnYarn">https://xulovemin.github.io/2021/04/30/flinkOnYarn/</a></p>
+        <footer>
+            <a href="https://xulovemin.github.io">
+                <img src="/images/logo.png" alt="">
+                
+            </a>
+        </footer>
+    </div>-->
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/docker/" class="color2">docker</a>
+      
+    <a href="/tags/flinOnYarn/" class="color1">flinOnYarn</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动"><span class="post-toc-text">启动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#说明"><span class="post-toc-text">说明</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/30/flink-spark-standalone/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          flink_spark_standalone
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/30/hadoop集群搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">hadoop集群搭建</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        &copy; 记事本<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://xulovemin.github.io",
+      animate: true,
+      isHome: false,
+      share: false,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/DevOps/">DevOps</a><a class="category-link" href="/categories/Linux操作/">Linux操作</a><a class="category-link" href="/categories/休闲贴/">休闲贴</a><a class="category-link" href="/categories/工具/">工具</a><a class="category-link" href="/categories/技术贴/">技术贴</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/运维/">运维</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/flinOnYarn/" style="font-size: 10px;">flinOnYarn</a> <a href="/tags/hadoop集群/" style="font-size: 10px;">hadoop集群</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/电影网站/" style="font-size: 10px;">电影网站</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 16.67px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/K8s/" style="font-size: 10px;">K8s</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/docker编排/" style="font-size: 10px;">docker编排</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/flinOnYarn/" style="font-size: 10px;">flinOnYarn</a> <a href="/tags/hadoop集群/" style="font-size: 10px;">hadoop集群</a> <a href="/tags/mongo/" style="font-size: 13.33px;">mongo</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/swarm/" style="font-size: 10px;">swarm</a> <a href="/tags/分片/" style="font-size: 10px;">分片</a> <a href="/tags/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tags/可装逼/" style="font-size: 10px;">可装逼</a> <a href="/tags/安装/" style="font-size: 10px;">安装</a> <a href="/tags/密码应用/" style="font-size: 10px;">密码应用</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/持续部署/" style="font-size: 10px;">持续部署</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/爬虫相关/" style="font-size: 10px;">爬虫相关</a> <a href="/tags/电影网站/" style="font-size: 10px;">电影网站</a> <a href="/tags/负载均衡/" style="font-size: 10px;">负载均衡</a> <a href="/tags/辅助/" style="font-size: 10px;">辅助</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/集群/" style="font-size: 16.67px;">集群</a> <a href="/tags/集群搭建/" style="font-size: 10px;">集群搭建</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="关键字搜索..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
